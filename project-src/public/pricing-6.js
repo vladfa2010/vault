@@ -164,7 +164,9 @@
         '<div class="cv-p6-head"><h3>' + plan.name + '</h3>' + badge + '</div>' +
         priceHtml +
         '<p class="cv-p6-desc">' + plan.description + '</p>' +
-        '<a class="cv-p6-btn" href="' + plan.href + '">' + plan.cta + '</a>' +
+        (plan.href.indexOf('sign-up') !== -1
+          ? '<a class="cv-p6-btn" href="#" data-wl="' + plan.name + '">' + plan.cta + '</a>'
+          : '<a class="cv-p6-btn" href="' + plan.href + '">' + plan.cta + '</a>') +
         '<div class="cv-p6-feats">' +
           '<p class="cv-p6-lead">Что включено:</p>' +
           '<ul>' + plan.features.map(function (f) {
@@ -185,6 +187,17 @@
     sec.dataset.p6 = 'real';
 
     document.head.appendChild(css());
+
+    /* кнопки покупки тарифов → форма ожидания waitlist-6 */
+    if (!document.body.dataset.p6WlWired) {
+      document.body.dataset.p6WlWired = '1';
+      document.addEventListener('click', function (e) {
+        var btn = e.target.closest && e.target.closest('a.cv-p6-btn[data-wl]');
+        if (!btn) return;
+        e.preventDefault();
+        if (window.cvWaitlist) window.cvWaitlist.open(btn.getAttribute('data-wl'));
+      });
+    }
 
     /* удаляем прежнюю сетку (SSR или порт pricing-1), сноску сохраняем */
     var footnote = null;
