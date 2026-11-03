@@ -1,0 +1,14 @@
+{
+  "pages": {},
+  "app": {
+    "[project]/app/_not-found/page": [
+      "static/media/Hauss_Regular-s.p.17yks2vzb-ix_.woff",
+      "static/media/Hauss_Medium-s.p.3mttxa5rb687x.woff",
+      "static/media/Gravity_Condensed-s.p.3k1olwz6wfc2c.woff",
+      "static/media/31f7f02e569bed71-s.p.3nyaic_zkhika.woff2",
+      "static/media/2eb9f29505ebdac6-s.p.1urb3y420qa55.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pagesUsingSizeAdjust": false
+}

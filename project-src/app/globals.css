@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --muted: #f5f5f5;
+  --muted-foreground: #737373;
+  --border: #e5e5e5;
+  --ring: #0066ff;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  --muted: #171717;
+  --muted-foreground: #a3a3a3;
+  --border: #262626;
+  --ring: #3b82f6;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  --font-sans: var(--font-hauss), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-hauss), ui-monospace, monospace;
+  --font-display: var(--font-gravity), var(--font-roboto-condensed), var(--font-hauss), sans-serif;
+  --font-serif: var(--font-display);
+}
+
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes spectrum-drift {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 200% 50%;
+  }
+}
+
+/* --- Device (titanium phone mockup) --- */
+.device-root{position:relative;width:17rem;perspective:1200px}
+.device-float{animation:device-sway 7s ease-in-out infinite;transform-style:preserve-3d}
+@keyframes device-sway{0%,100%{transform:translateY(calc(var(--f,1)*3px)) rotateZ(calc(var(--f,1)*-.6deg))}50%{transform:translateY(calc(var(--f,1)*-6px)) rotateZ(calc(var(--f,1)*.6deg))}}
+.device-tilt{transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) rotateZ(var(--rz,0deg));transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.device-root:hover .device-tilt{transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) rotateZ(var(--rz,0deg)) translateY(calc(var(--lift,1)*-.9rem))}
+.device-phone{position:relative;width:17rem;aspect-ratio:9/19.4;border-radius:3.2rem;padding:.55rem;background:linear-gradient(150deg,#9a9aa0 0%,#4a4a4f 28%,#6e6e74 52%,#333338 78%,#84848a 100%);box-shadow:inset 0 0 0 2px rgba(255,255,255,.16),inset 0 0 0 6px rgba(0,0,0,.5),0 40px 70px -24px rgba(0,0,0,.75)}
+.device-btn{position:absolute;border-radius:2px;background:linear-gradient(90deg,#7c7c82,#3f3f44)}
+.device-btn-l1{left:-2.5px;top:6.5rem;width:3px;height:1.6rem}
+.device-btn-l2{left:-2.5px;top:8.6rem;width:3px;height:1.6rem}
+.device-btn-l3{left:-2.5px;top:10.7rem;width:3px;height:2.4rem}
+.device-btn-r{right:-2.5px;top:9.2rem;width:3px;height:3.6rem}
+.device-screen{position:relative;height:100%;border-radius:2.65rem;overflow:hidden;background:#000}
+.device-screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.device-glare{position:absolute;inset:0;z-index:1;background:linear-gradient(118deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,.05) 22%,transparent 34%);pointer-events:none}
+.device-island{position:absolute;top:.65rem;left:50%;transform:translateX(-50%);z-index:2;width:4.6rem;height:1.45rem;border-radius:1rem;background:#000;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
+.device-shadow{position:absolute;bottom:-3rem;left:50%;transform:translateX(-50%);width:75%;height:2.4rem;border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,0,0,.5),transparent 68%);filter:blur(8px)}
+@media (prefers-reduced-motion:reduce){.device-float{animation:none}}
